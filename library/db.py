@@ -24,9 +24,7 @@ class L:
         for item in doc:
             table.append([item['SHELF'], item['name']])
 
-        print tabulate(table,
-                       headers=['SHELF', 'DESCRIPTION'],
-                       tablefmt='orgtbl')
+        return table
 
     def shelf(self, key):
         

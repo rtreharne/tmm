@@ -4,5 +4,8 @@
 {% block content %}
 <h1>Library</h1>
 <h2>Shelves</h2>
-<p>{{ text }}</p>
+<ul>
+    {% for item in shelves %}
+    <li><a href="{{ item|slice:":1" }}">{{ item|slice:"1:" }}</a></li>
+    {% endfor %}
 {% endblock %}

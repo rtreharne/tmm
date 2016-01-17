@@ -7,6 +7,7 @@ def shelves(request):
     
     # create library object
     library = L()
+    shelves = library.shelves()
     #shelves = library.shelves()
 
-    return render(request, "shelves.html", {'shelves': L.shelves})
+    return render(request, "shelves.html", {'shelves': shelves})
