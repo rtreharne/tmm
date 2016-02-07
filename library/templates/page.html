@@ -3,7 +3,6 @@
 
 {% block content %}
 <h1>Library</h1>
-<h2>{{shelf}}</h2>
-<h2>{{book}}</h2>
+<p><a href="/library/">library</a> / <a href="/library/{{ shelf }}/">{{ shelf}}</a> / <a href="/library/{{ shelf }}/{{ book }}/">{{ book }}</a></p>
 <p>{{page}}</p>
 {% endblock %}
