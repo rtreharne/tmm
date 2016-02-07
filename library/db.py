@@ -5,14 +5,17 @@ import os
 
 
 class L:
-    url = os.path.join(settings.STATIC_PATH, 'library/database/library.yml')
+
+    url = os.path.join(settings.STATIC_PATH, 'library/database/')
+    library = os.path.join(url, 'library.yml')
+   
 
     def __init__(self):
         self.N = 100
         self.x_data = None
         self.lib = self.read_data()
 
-    def read_data(self, key=url):
+    def read_data(self, key=library):
         with open(key, 'r') as f:
             doc = yaml.load(f)
         return doc
@@ -44,13 +47,9 @@ class L:
                 break
         
         if len(table)==0:
-            print '-----------'
-            print 'No Results'
-            print '-----------'
+            return None
         else:
-            print tabulate(table,
-                           headers=['ID', 'BOOK', 'DESCRIPTION'],
-                           tablefmt='orgtbl')
+            return table
 
     def book(self, key):
         count_shelf = 0
@@ -70,15 +69,11 @@ class L:
                             table.append(['%d%03d%02d' % (count_shelf, count_book, count_page) , page['PAGE'], page['name'][:50]])
                             
         if len(table)==0:
-            print '-----------'
-            print 'No Results'
-            print '-----------'
+            return None
         else:
-            print tabulate(table,
-                           headers=['ID', 'PAGE', 'DESCRIPTION'],
-                           tablefmt='orgtbl')
+            return table
 
-    def page(self, key):
+    def page(self, key, url=url):
         try:
             key = int(key)
         except ValueError:
@@ -103,7 +98,7 @@ class L:
                             for page in book['content']:
                                 count_page += 1
                                 if count_page == page_id:
-                                    return  self.read_data('../refractiveindex/database/%s' % (page['path']))
+                                    return  self.read_data('%s%s' % (url,page['path']))
 
     def search(self, keyword, deep=False):
         a = self.lib

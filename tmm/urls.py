@@ -3,8 +3,9 @@ from django.contrib import admin
 from django.conf import settings
 
 urlpatterns = patterns('',
-    #url(r'^admin/', include(admin.site.urls)),
-    url(r'^library/$', include('library.urls'), name='library'),
+    url(r'^$', 'tmm.views.home', name='home'),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^library/', include('library.urls')),
 )
 
 #urlpatterns += patterns(

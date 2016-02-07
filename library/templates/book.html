@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Library</h1>
+<h2>Book</h2>
+<p>{{ shelf }}</p>
+<ul>
+    {% for page in book %}
+    <li>
+        <a href="{{ page.0 }}/">{{ page.1 }}</a>
+    </li>
+    {% endfor %}
+{% endblock %}
